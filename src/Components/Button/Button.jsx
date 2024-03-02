@@ -1,9 +1,10 @@
 import React from "react";
+import { signOut } from "firebase/auth";
 
-const Button = ({ handleClick, className }) => {
+const Button = ({ handleClick, className, content }) => {
   return (
     <button onClick={handleClick} className={className}>
-      Button
+      {content}
     </button>
   );
 };
