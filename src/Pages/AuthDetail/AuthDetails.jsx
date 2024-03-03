@@ -1,10 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { auth } from "../../firebase/firebase";
-import SellerLandingpage from "../../Seller/Seller Landing Page/SellerLandingpage";
+import SellerLandingpage from "../../SellerPages/Seller/Seller";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import Button from "../../Components/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Seller from "../../SellerPages/Seller/Seller";
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState();
   const navigate = useNavigate();
@@ -34,10 +35,10 @@ const AuthDetails = () => {
     <div>
       {authUser ? (
         <>
-          <SellerLandingpage handleSignOut={userSignOut} authUser={authUser} />
+          <Seller handleSignOut={userSignOut} authUser={authUser} />
         </>
       ) : (
-        <p>SignOut</p>
+        <Link to="/" />
       )}
     </div>
   );

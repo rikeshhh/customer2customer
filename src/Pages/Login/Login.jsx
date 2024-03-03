@@ -4,10 +4,11 @@ import { addDoc, collection } from "@firebase/firestore";
 import { auth } from "../../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Signup from "../Signup/Signup";
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const messagesCollectionRef = collection(firestore, "messages");
+  const messagesCollectionRef = collection(firestore, "users");
   const navigate = useNavigate();
 
   const signIn = async (e) => {

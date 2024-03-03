@@ -5,7 +5,9 @@ import LandingPage from "../Pages/LandingPage/LandingPage";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
 import AuthDetails from "../Pages/AuthDetail/AuthDetails";
-import SellerLandingpage from "../Seller/Seller Landing Page/SellerLandingpage";
+import Seller from "../SellerPages/Seller/Seller";
+import SellerData from "../Pages/Buyer/SellerData";
+import ProdDetail from "../Pages/ProductDetail/ProdDetail";
 
 export const router = createBrowserRouter([
   {
@@ -29,9 +31,17 @@ export const router = createBrowserRouter([
         element: <AuthDetails />,
       },
       {
-        path:'/sellerPage',
-        element: <SellerLandingpage/>
-      }
+        path: "/sellerPage",
+        element: <Seller />,
+      },
+      {
+        path: "/sellerData",
+        element: <SellerData />,
+      },
+      {
+        path: "/prodData",
+        element: <ProdDetail />,
+      },
     ],
   },
 ]);

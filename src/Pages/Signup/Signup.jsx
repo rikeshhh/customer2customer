@@ -9,7 +9,7 @@ import {
 const Signup = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
+  const [accountType, setAccountType] = useState();
   const signUp = async (e) => {
     //sign in
     e.preventDefault();
@@ -27,6 +27,12 @@ const Signup = () => {
       onSubmit={signUp}
       className="flex flex-col w-96 justify-center items-center"
     >
+      {/* <input
+        value={accountType}
+        onChange={(e) => setAccountType(e.target.value)}
+        className="border"
+        placeholder="Enter your accountType"
+      /> */}
       <input
         value={email}
         onChange={(e) => setEmail(e.target.value)}
