@@ -1,45 +1,37 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { auth, firestore } from "../../firebase/firebase";
-import SellerLandingpage from "../../SellerPages/Seller/Seller";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import Button from "../../Components/Button/Button";
+import React, { useEffect } from "react";
+import { auth } from "../../firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import Seller from "../../SellerPages/Seller/Seller";
 import { useAuthContext } from "../../Context/AuthContext";
 import Buyer from "../Buyer/Buyer";
-const AuthDetails = () => {
-  const { authUser, setAuthUser } = useAuthContext();
 
-  //checks if user is logged in or not
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      console.log("user login", user);
-    } else {
-      console.log("user logged out");
-    }
-  });
+const AuthDetails = () => {
+  const { authUser, setAuthUser } = useAuthContext(); // Accessing authUser and setAuthUser from AuthContext
   const navigate = useNavigate();
+
+  // Function to handle authentication state changes
   useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setAuthUser(user);
+        setAuthUser(user); // Set authenticated user in context
       } else {
-        setAuthUser(null);
+        setAuthUser(null); // Clear authenticated user from context
+        navigate("/"); // Redirect to home page if user is not authenticated
       }
-      return () => {
-        listen();
-      };
     });
-  }, []);
-  const { setAuthorization } = useAuthContext;
+
+    return () => {
+      unsubscribe(); // Unsubscribe from auth state changes when component unmounts
+    };
+  }, [navigate, setAuthUser]); // Dependency array with navigate and setAuthUser
+
   return (
     <div>
       {authUser ? (
-        <>
-          <Buyer userId={authUser.email} />
-        </>
+        // Render Buyer component if user is authenticated
+        <Buyer userId={authUser.email} />
       ) : (
+        // Render link to home page if user is not authenticated
         <Link to="/" />
       )}
     </div>

@@ -5,6 +5,7 @@ import Button from "../../Components/Button/Button";
 import { notifySuccess } from "../../Components/Notistack/Notices";
 import NotistackContainer from "../../Components/Notistack/NotistackContainer";
 
+// Configuration for Khalti checkout
 let config = {
   publicKey: "test_public_key_8e66576e954a4ca6ad72cdeaa01d7814",
   productIdentity: "1234567890",
@@ -33,8 +34,10 @@ let config = {
 let checkout = new KhaltiCheckout(config);
 
 const Checkout = () => {
+  // State to store cart items
   const { states, removeItemFromCart } = useContextCreate();
   const [total, setTotal] = useState(0);
+
   // Calculate total amount
   useEffect(() => {
     const calculateTotal = () => {
@@ -47,12 +50,14 @@ const Checkout = () => {
     calculateTotal();
   }, [states]);
 
+  // Function to remove item from cart
   const removeItem = (index) => {
     notifySuccess("Item removed successfully");
     removeItemFromCart(index);
     // Update total after removing an item
   };
 
+  // Function to initiate payment checkout
   const paymentCheckout = () => {
     checkout.show({ amount: total * 100 }); // Multiply total by 100 as Khalti accepts amount in paisa
   };

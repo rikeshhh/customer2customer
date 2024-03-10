@@ -6,18 +6,19 @@ import { notifySuccess } from "../../Components/Notistack/Notices";
 import NotistackContainer from "../../Components/Notistack/NotistackContainer";
 
 const ProdDetail = () => {
-  const location = useLocation();
-  const { seller } = location.state;
+  const location = useLocation(); // Hook to access the current location
+  const { seller } = location.state; // Destructure the seller object from location state
 
-  // Now you can use the seller object in your component
+  // Function to add item to cart
   const { addItemToCart } = useContextCreate();
   const addToCart = () => {
-    notifySuccess("Item added succefully");
-    addItemToCart(seller);
+    notifySuccess("Item added successfully"); // Notify user of successful addition to cart
+    addItemToCart(seller); // Add item to cart
   };
+
   return (
     <section className="ProductDetail container mx-auto">
-      <div className="flex ">
+      <div className="flex">
         <div className="w-1/2">
           <h2>{seller.productName}</h2>
           <figure>
@@ -32,7 +33,7 @@ const ProdDetail = () => {
             handleClick={addToCart}
             className="border bg-purple-700 text-white px-4"
           />
-      <NotistackContainer/>
+          <NotistackContainer />
         </div>
       </div>
     </section>

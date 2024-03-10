@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import reactSvg from "../../assets/react.svg";
-import Button from "../../Components/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebase";
 import { useAuthContext } from "../../Context/AuthContext";
@@ -9,6 +7,7 @@ import { CiDark } from "react-icons/ci";
 import { CiLight } from "react-icons/ci";
 import NotistackContainer from "../../Components/Notistack/NotistackContainer";
 import { notifySuccess } from "../../Components/Notistack/Notices";
+import Button from "../../Components/Button/Button";
 
 const Header = () => {
   const navigate = useNavigate();

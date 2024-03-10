@@ -2,11 +2,14 @@ import React, { createContext, useContext, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
+// Create context for authentication
 const AuthContextCreate = createContext();
 
+// Provider component to manage authentication state
 export const AuthContextProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState([]); // State to store authenticated user
 
+  // Function to handle user sign out
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -18,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
         console.log(error);
       });
   };
-  console.log(authUser);
+
   return (
     <AuthContextCreate.Provider
       value={{ authUser, handleSignOut, setAuthUser }}
@@ -28,6 +31,7 @@ export const AuthContextProvider = ({ children }) => {
   );
 };
 
+// Custom hook to access authentication context
 export const useAuthContext = () => {
   return useContext(AuthContextCreate);
 };
