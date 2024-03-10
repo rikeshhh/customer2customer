@@ -2,7 +2,38 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
+      animation: {
+        typewriter: 'typewriter 2s steps(11) forwards',
+        caret: 'typewriter 2s steps(11) forwards, blink 1s steps(11) infinite 2s',
+      },
+      keyframes: {
+        typewriter: {
+          to: {
+            left: '100%',
+          },
+        },
+        blink: {
+          '0%': {
+            opacity: '0',
+          },
+          '0.1%': {
+            opacity: '1',
+          },
+          '50%': {
+            opacity: '1',
+          },
+          '50.1%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },
+      },
       colors: {
         primary: {
           50: "#eff6ff",
@@ -17,6 +48,8 @@ export default {
           900: "#1e3a8a",
           950: "#172554",
           "sky-blue": "#0096FE",
+          "dark-blue": "#0074D9",
+          "dark-yellow": "#FFD166",
         },
       },
     },

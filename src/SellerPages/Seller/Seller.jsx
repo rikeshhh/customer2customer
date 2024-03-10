@@ -6,33 +6,45 @@ import { addDoc, collection } from "firebase/firestore";
 import SellerData from "../../Pages/Buyer/SellerData";
 import { storage } from "../../firebase/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-const Seller = ({ handleSignOut, authUser }) => {
+import { useAuthContext } from "../../Context/AuthContext";
+import { notifyError, notifySuccess } from "../../Components/Notistack/Notices";
+import NotistackContainer from "../../Components/Notistack/NotistackContainer";
+const Seller = () => {
+  const { authUser, handleSignOut } = useAuthContext();
   const { register, handleSubmit } = useForm();
   // State to store the selected image file
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState();
 
   const saveInfo = async (data) => {
     try {
-      // Upload image file to Firestore Storage
-      let imageUrl = ""; // Initialize imageUrl variable
+      const user = auth.currentUser; // Get the current user
+      console.log(user)
+      if (user) {
+        // Upload image file to Firestore Storage
+        let imageUrl = ""; // Initialize imageUrl variable
 
-      if (imageFile) {
-        const storageRef = ref(storage, `images/${imageFile.name}`);
-        await uploadBytes(storageRef, imageFile);
+        if (imageFile) {
+          const storageRef = ref(storage, `images/${imageFile.name}`);
+          await uploadBytes(storageRef, imageFile);
 
-        // Get the download URL of the uploaded image
-        imageUrl = await getDownloadURL(storageRef);
+          // Get the download URL of the uploaded image
+          imageUrl = await getDownloadURL(storageRef);
+        }
+
+        // Save form data to Firestore
+        await addDoc(collection(firestore, "sellerData"), {
+          ...data,
+          imageUrl: imageUrl,
+          userId: user.uid, // Include the userId in the document
+        });
+
+        notifySuccess("Form data saved successfully!");
+      } else {
+        console.log("No user signed in");
       }
-
-      // Save form data to Firestore
-      await addDoc(collection(firestore, "sellerData"), {
-        ...data,
-        imageUrl: imageUrl, // Include the imageUrl in the document
-      });
-
-      console.log("Form data saved successfully!");
     } catch (error) {
       console.error("Error saving form data:", error);
+      notifyError(error);
     }
   };
 
@@ -42,42 +54,51 @@ const Seller = ({ handleSignOut, authUser }) => {
       console.log(imageFile); // This will log the updated state value
     });
   };
-
+  console.log(authUser);
   return (
-    <section className="SellerPage">
-      <div>
-        <p>{`Signed in as ${authUser.email}`}</p>
-        <button onClick={handleSignOut}>Sign Out</button>
-        <form onSubmit={handleSubmit(saveInfo)} className="flex flex-col">
-          <input
-            type="Name"
-            placeholder="Enter the name"
-            {...register("name")}
-          />
-          <input
-            type="text"
-            placeholder="Enter the product info"
-            {...register("productName")}
-          />
-          <input
-            type="text"
-            placeholder="Enter the product description"
-            {...register("productDescrip")}
-          />
-          <input
-            type="file"
-            {...register("imageUrl")}
-            onChange={handleImageChange} // Call handleImageChange when a file is selected
-          />
-          <input
-            type="text"
-            placeholder="Enter the amount"
-            {...register("productAmount")}
-          />
-          <button type="submit">Proceed</button>
-        </form>
-      </div>
-    </section>
+    <>
+      {authUser ? (
+        <section className="sellerpage flex justify-center items-center h-screen">
+          <div>
+            <form onSubmit={handleSubmit(saveInfo)} className="flex flex-col">
+              <input
+                type="Name"
+                className="mr-1 shadow  w-full p-2 border"
+                placeholder="Enter the name"
+                {...register("name")}
+              />
+              <input
+                type="text"
+                className="mr-1 shadow  w-full p-2 border"
+                placeholder="Enter the product info"
+                {...register("productName")}
+              />
+              <input
+                type="text"
+                className="mr-1 shadow  w-full p-2 border"
+                placeholder="Enter the product description"
+                {...register("productDescrip")}
+              />
+              <input
+                type="file"
+                {...register("imageUrl")}
+                onChange={handleImageChange} // Call handleImageChange when a file is selected
+              />
+              <input
+                type="text"
+                placeholder="Enter the amount"
+                className="mr-1 shadow  w-full p-2 border"
+                {...register("productAmount")}
+              />
+              <button type="submit">Proceed</button>
+            </form>
+          </div>
+        </section>
+      ) : (
+        ""
+      )}
+      <NotistackContainer />
+    </>
   );
 };
 

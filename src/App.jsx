@@ -1,19 +1,23 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import AuthDetails from "./Pages/AuthDetail/AuthDetails";
 import Header from "./Pages/Header/Header";
-import LandingPage from "./Pages/LandingPage/LandingPage";
-import Login from "./Pages/Login/Login";
-import Signup from "./Pages/Signup/Signup";
+import { useThemeContext } from "./Context/ThemeContext";
 
 function App() {
+  const { theme } = useThemeContext();
+
   return (
-    <>
-      <Header />
-      <body className="content-wrapper">
-      <Outlet/>
-      </body>
-    </>
+    <div id={theme} className="layout">
+      <header className="content-wrapper">
+        <Header />
+      </header>
+      <main className="content-wrapper">
+        <Outlet />
+      </main>
+      <footer></footer>
+    </div>
   );
 }
 

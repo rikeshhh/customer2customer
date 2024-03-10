@@ -4,7 +4,7 @@ import { signOut } from "firebase/auth";
 const Button = ({ handleClick, className, content, type }) => {
   return (
     <button onClick={handleClick} className={className} type={type}>
-      {content}
+{content}
     </button>
   );
 };

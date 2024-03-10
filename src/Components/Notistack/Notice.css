@@ -1,0 +1,17 @@
+.success-bar{
+    border-left: 4px solid var(--toast-success-border);
+  }
+  .error-bar{
+    border-left: 4px solid var(--toast-error-border);
+  }
+
+.toast__heading{
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.toast__paragraph{
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+}

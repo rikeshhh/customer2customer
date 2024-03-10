@@ -5,9 +5,11 @@ import LandingPage from "../Pages/LandingPage/LandingPage";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
 import AuthDetails from "../Pages/AuthDetail/AuthDetails";
-import Seller from "../SellerPages/Seller/Seller";
 import SellerData from "../Pages/Buyer/SellerData";
 import ProdDetail from "../Pages/ProductDetail/ProdDetail";
+import Seller from "../SellerPages/Seller/Seller";
+import Checkout from "../Pages/Checkout/Checkout";
+import SellerProduct from "../SellerPages/SellerProduct";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,10 @@ export const router = createBrowserRouter([
         element: <Signup />,
       },
       {
+        path: "/sellerProduct",
+        element: <SellerProduct />,
+      },
+      {
         path: "/authDetail",
         element: <AuthDetails />,
       },
@@ -41,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "/prodData",
         element: <ProdDetail />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
     ],
   },
