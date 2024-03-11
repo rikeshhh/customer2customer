@@ -8,17 +8,20 @@ const Buyer = ({ userId }) => {
   const { authUser } = useAuthContext();
 
   return (
-    <>
+    <section className="addProduct h-screen flex justify-center items-center gap-12 flex-col">
       {/* Greeting message for the authenticated user */}
-      <h1 className="relative w-[max-content] before:absolute before:inset-0 before:animate-typewriter before:bg-white after:absolute after:inset-0 after:w-[0.125em] after:animate-caret after:bg-black">
+      <h1 className="relative w-[max-content] before:absolute before:inset-0 before:animate-typewriter before:bg-white after:absolute after:inset-0 after:w-[0.125em] after:animate-caret after:bg-black text-2xl">
         {`Thank you ${userId} for connecting with us! Get started by adding a product`}
       </h1>
       {/* Link to navigate to the seller page */}
       <Link to="/sellerPage">
         {/* Button to add a product */}
-        <Button content="Add a product" className="text-primary-sky-blue border p-2" />
+        <Button
+          content="Add a product"
+          className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
+        />
       </Link>
-    </>
+    </section>
   );
 };
 

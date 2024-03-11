@@ -1,3 +1,15 @@
+body {
+  /* Set background image */
+  background-image: url("./assets/man.jpg");
+  /* Adjust background properties as needed */
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  color: white;
+}
+form input {
+  color: black;
+}
 .layout {
   width: 100%;
   margin: 0;
@@ -255,4 +267,14 @@ header {
     transform: translate(52px, 850px);
     opacity: 0;
   }
+}
+
+.blob {
+  border-radius: 31% 69% 18% 82% / 56% 29% 71% 44%;
+  width: 377px;
+  height: 377px;
+  background-image: url("./assets/about.jpg");
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
 }

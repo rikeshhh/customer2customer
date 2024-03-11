@@ -4,32 +4,7 @@ import KhaltiCheckout from "khalti-checkout-web";
 import Button from "../../Components/Button/Button";
 import { notifySuccess } from "../../Components/Notistack/Notices";
 import NotistackContainer from "../../Components/Notistack/NotistackContainer";
-
-// Configuration for Khalti checkout
-let config = {
-  publicKey: "test_public_key_8e66576e954a4ca6ad72cdeaa01d7814",
-  productIdentity: "1234567890",
-  productName: "Drogon",
-  productUrl: "http://gameofthrones.com/buy/Dragons",
-  eventHandler: {
-    onSuccess(payload) {
-      console.log(payload);
-    },
-    onError(error) {
-      console.log(error);
-    },
-    onClose() {
-      console.log("widget is closing");
-    },
-  },
-  paymentPreference: [
-    "KHALTI",
-    "EBANKING",
-    "MOBILE_BANKING",
-    "CONNECT_IPS",
-    "SCT",
-  ],
-};
+import config from "../../Components/KHalti/KhaltiConfig";
 
 let checkout = new KhaltiCheckout(config);
 
@@ -69,16 +44,16 @@ const Checkout = () => {
           {states.map((option, index) => (
             <div
               key={index}
-              className="flex flex-col justify-center items-center"
+              className="flex border flex-col justify-start p-4 rounded-lg gap-2 font-black "
             >
               <figure className="object-contain px-2">
                 <img src={option.imageUrl} alt="" />
               </figure>
-              <h2>{option.productAmount}</h2>
+              <h2>Price:{option.productAmount}</h2>
               <Button
                 handleClick={() => removeItem(index)}
                 content="Remove"
-                className="text-primary-sky-blue border p-2"
+                className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
               />
             </div>
           ))}
@@ -90,7 +65,7 @@ const Checkout = () => {
       <Button
         content="Pay with Khalti"
         handleClick={paymentCheckout}
-        className="text-primary-sky-blue border p-2 w-full"
+        className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
       />
       <NotistackContainer />
     </>

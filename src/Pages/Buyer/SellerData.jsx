@@ -48,14 +48,14 @@ const SellerData = () => {
   };
 
   return (
-    <section className="SellerData">
+    <section className="SellerData h-screen">
       <>
-        <h2>Seller Data</h2>
-        <div className="grid grid-cols-4">
+        <h2 className="text-center text-3xl font-black">Products</h2>
+        <div className="grid grid-cols-4 gap-4">
           {sellerData.map((seller, index) => (
             <div
               key={seller.id}
-              className="flex border flex-col justify-start p-2"
+              className="flex border flex-col justify-start p-4 rounded-lg gap-2 font-black "
             >
               <figure>
                 <img src={seller.imageUrl} alt="" />
@@ -68,13 +68,13 @@ const SellerData = () => {
               <Button
                 content="View Product"
                 handleClick={() => navigate("/prodData", { state: { seller } })}
-                className="border bg-primary-sky-blue text-white"
+                className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
               />
               {/* Button to add product to cart */}
               <Button
                 content="Add to cart"
                 handleClick={() => addToCart(seller)}
-                className="border bg-purple-700 text-white px-4"
+                className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
               />
             </div>
           ))}

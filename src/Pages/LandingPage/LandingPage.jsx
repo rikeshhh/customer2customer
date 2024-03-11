@@ -69,48 +69,43 @@ const LandingPage = () => {
       {openSignIn ? (
         <Signup />
       ) : (
-        <div className="flex justify-center items-center  h-screen gap-6 ">
-          {/* Button to navigate to previous slide */}
-          <button onClick={prevSlide}>
-            <FaArrowLeft />
-          </button>
+        <div className="flex justify-center flex-col gap-6 h-screen">
+          {/* Image carousel */}
+          {/* <figure className="relative w-full  h-96 overflow-hidden">
+            Apply transition class based on state
+            <img
+              src={PageContent[currentIndex].image}
+              alt=""
+              className={` top-0 left-0 w-full  object-contain ${
+                isTransitioning ? "opacity-0 transition-opacity" : "opacity-100"
+              }`}
+            />
+          </figure> */}
 
           {/* Main content */}
-          <div className="w-1/2 flex flex-col justify-center gap-12">
-            <h1 className="text-4xl">
+          <div className=" flex flex-col justify-center items-center gap-12 ">
+            <h1 className="text-4xl font-semibold">
               Focus on{" "}
               <span className="text-primary-sky-blue">
                 {PageContent[currentIndex].header}
               </span>
               ,
             </h1>
-            <h2 className="text-4xl">We'll do the rest</h2>
+            <h2 className="text-8xl font-semibold">We'll do the rest</h2>
             <p className="text-lg">{PageContent[currentIndex].paragraph} </p>
 
             {/* Button for sign-in/up */}
             <Button
               content={PageContent[currentIndex].buttonContent}
-              className="bg-primary-sky-blue text-primary-50 p-2 rounded-md "
+              className="bg-primary-sky-blue text-primary-50 p-2 rounded-md w-96 "
               handleClick={handleSignin}
             />
           </div>
 
-          {/* Image carousel */}
-          <div className="relative w-1/2 h-3/4 overflow-hidden">
-            {/* Apply transition class based on state */}
-            <img
-              src={PageContent[currentIndex].image}
-              alt=""
-              className={`absolute top-0 left-0 w-full h-3/4 object-contain ${
-                isTransitioning ? "opacity-0 transition-opacity" : "opacity-100"
-              }`}
-            />
-          </div>
-
           {/* Button to navigate to next slide */}
-          <button onClick={nextSlide}>
+          {/* <button onClick={nextSlide}>
             <FaArrowRight />
-          </button>
+          </button> */}
         </div>
       )}
     </section>

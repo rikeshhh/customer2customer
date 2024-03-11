@@ -49,17 +49,27 @@ const SellerProduct = ({ userUUID }) => {
     }
   };
   return (
-    <div>
-      <h2>User Profile</h2>
+    <div className="flex flex-col justify-center items-center">
+      <h2 className="text-3xl font-black">User Profile</h2>
       {userData ? (
-        <div>
+        <div className="grid grid-cols-4 gap-4">
           {userData.map((product) => (
-            <div key={product.id}>
+            <div
+              key={product.id}
+              className="flex border flex-col justify-start p-4 rounded-lg gap-2 font-black "
+            >
               <p>Name: {product.name}</p>
-              <img src={product.imageUrl} />
+              <figure>
+                <img src={product.imageUrl} />
+              </figure>
               <p>Description:{product.productDescrip}</p>
               {/* Display other product data as needed */}
-              <button onClick={() => handleDelete(product.id)}>Delete</button>
+              <button
+                onClick={() => handleDelete(product.id)}
+                className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
+              >
+                Delete
+              </button>
             </div>
           ))}
         </div>

@@ -11,7 +11,7 @@ import { notifyError, notifySuccess } from "../../Components/Notistack/Notices";
 import NotistackContainer from "../../Components/Notistack/NotistackContainer";
 const Seller = () => {
   const { authUser, handleSignOut } = useAuthContext();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   // State to store the selected image file
   const [imageFile, setImageFile] = useState();
 
@@ -37,7 +37,7 @@ const Seller = () => {
           imageUrl: imageUrl,
           userId: user.uid, // Include the userId in the document
         });
-
+        reset();
         notifySuccess("Form data saved successfully!");
       } else {
         console.log("No user signed in");
@@ -58,39 +58,76 @@ const Seller = () => {
   return (
     <>
       {authUser ? (
-        <section className="sellerpage flex justify-center items-center h-screen">
+        <section className="sellerpage flex justify-center flex-col gap-8 ">
+          <h2 className="text-4xl">
+            Kindly feel all the form with accurate data
+          </h2>
           <div>
-            <form onSubmit={handleSubmit(saveInfo)} className="flex flex-col">
+            <form onSubmit={handleSubmit(saveInfo)} className="flex flex-col gap-2">
+              <label
+                for="Name"
+                className="mb-3 block text-base font-medium text-white"
+              >
+                Name
+              </label>
               <input
                 type="Name"
-                className="mr-1 shadow  w-full p-2 border"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 placeholder="Enter the name"
                 {...register("name")}
               />
+              <label
+                for="Name"
+                className="mb-3 block text-base font-medium text-white"
+              >
+                Product Name
+              </label>
               <input
                 type="text"
-                className="mr-1 shadow  w-full p-2 border"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 placeholder="Enter the product info"
                 {...register("productName")}
               />
-              <input
-                type="text"
-                className="mr-1 shadow  w-full p-2 border"
-                placeholder="Enter the product description"
-                {...register("productDescrip")}
-              />
+              <div className="mb-5">
+                <label
+                  for="message"
+                  className="mb-3 block text-base font-medium text-white"
+                >
+                  Product Description
+                </label>
+                <textarea
+                  rows="4"
+                  name="message"
+                  id="message"
+                  placeholder="Type your message"
+                  className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  {...register("productDescrip")}
+                ></textarea>
+              </div>
+
               <input
                 type="file"
                 {...register("imageUrl")}
                 onChange={handleImageChange} // Call handleImageChange when a file is selected
               />
+              <label
+                for="Name"
+                className="mb-3 block text-base font-medium text-white"
+              >
+                Product Amount
+              </label>
               <input
                 type="text"
                 placeholder="Enter the amount"
                 className="mr-1 shadow  w-full p-2 border"
                 {...register("productAmount")}
               />
-              <button type="submit">Proceed</button>
+              <button
+                type="submit"
+                className="hover:shadow-form rounded-md bg-primary-sky-blue py-3 px-8 text-base font-semibold text-white outline-none"
+              >
+                Proceed
+              </button>
             </form>
           </div>
         </section>

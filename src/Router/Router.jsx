@@ -10,6 +10,8 @@ import ProdDetail from "../Pages/ProductDetail/ProdDetail";
 import Seller from "../SellerPages/Seller/Seller";
 import Checkout from "../Pages/Checkout/Checkout";
 import SellerProduct from "../SellerPages/SellerProduct";
+import About from "../Pages/About/About";
+import Contact from "../Components/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +21,14 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <LandingPage />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/login",

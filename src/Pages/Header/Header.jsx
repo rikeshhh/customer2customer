@@ -28,7 +28,7 @@ const Header = () => {
     auth
       .signOut()
       .then(() => {
-        navigate('/')
+        navigate("/");
         notifySuccess("Log out");
       })
       .catch((err) => console.log(err.message));
@@ -47,62 +47,68 @@ const Header = () => {
     navigate("/sellerProduct");
   };
   return (
-    <section className="Header content-wrapper">
-      <nav className="Navigation flex justify-between ">
-        <ul className="flex gap-16">
-          <Link to="/">
-            <li>Home</li>
-          </Link>
-          <li>About Us</li>
-          <li>Contact Us</li>
-        </ul>
-        <Button
-          handleClick={changeTheme}
-          className="text-primary-sky-blue text-2xl  p-2"
-          content={
-            theme === "light" ? (
-              <CiLight className="text-black" />
+    <section className="Header   ">
+      <nav className="content-wrapper mx-auto">
+        <div className="Navigation flex justify-between ">
+          <ul className="flex gap-16">
+            <Link to="/">
+              <li>Home</li>
+            </Link>
+            <Link to="/about">
+              <li>About Us</li>
+            </Link>
+            <Link to="/contact">
+              <li>Contact Us</li>
+            </Link>
+          </ul>
+          <Button
+            handleClick={changeTheme}
+            className=" text-2xl  p-2"
+            content={
+              theme === "light" ? (
+                <CiLight className="text-black" />
+              ) : (
+                <CiDark className="text-white" />
+              )
+            }
+          />
+          <div className="flex gap-2">
+            {isAuthenticated ? (
+              <>
+                <Button
+                  content="SignOut"
+                  handleClick={userLogout}
+                  className="hover:bg-black hover:text-white transition duration-300 ease-in-out border p-4 rounded-lg"
+                />
+                <Button
+                  content="sellerProduct"
+                  handleClick={sellerProductDetail}
+                  className="hover:bg-black hover:text-white transition duration-300 ease-in-out border p-4 rounded-lg"
+                />
+              </>
             ) : (
-              <CiDark className="text-white" />
-            )
-          }
-        />
-        <div className="flex gap-2">
-          {isAuthenticated ? (
-            <>
-              <Button
-                content="SignOut"
-                handleClick={userLogout}
-                className="text-primary-sky-blue border p-2"
-              />
-              <Button
-                content="sellerProduct"
-                handleClick={sellerProductDetail}
-                className="text-primary-sky-blue border p-2"
-              />
-            </>
-          ) : (
-            // Render Sign In button conditionally
-            <>
-              <Link to="/sellerData">
+              // Render Sign In button conditionally
+              <>
+                <Link to="/sellerData">
+                  <Button
+                    content="View Products"
+                    className="hover:bg-black hover:text-white transition duration-300 ease-in-out border p-4 rounded-lg"
+                  />
+                </Link>
+                <Link to="/login">
+                  <Button
+                    content="Log in"
+                    className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg"
+                  />
+                </Link>
                 <Button
-                  content="View Products"
-                  className="text-primary-sky-blue border p-2"
+                  content="Cart"
+                  handleClick={userCart}
+                  className=" hover:bg-black hover:text-white transition duration-300 ease-in-out border p-4 rounded-lg"
                 />
-              </Link>
-              <Link to="/login">
-                <Button
-                  content="Log in"
-                  className="text-primary-sky-blue border p-2"
-                />
-              </Link>
-              <Button
-                content="Cart"
-                handleClick={userCart}
-                className="text-primary-sky-blue border p-2"
-              />
-            </>
-          )}
+              </>
+            )}
+          </div>
         </div>
       </nav>
       <NotistackContainer />

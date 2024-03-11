@@ -5,6 +5,7 @@ import AuthDetails from "./Pages/AuthDetail/AuthDetails";
 import Header from "./Pages/Header/Header";
 import { useThemeContext } from "./Context/ThemeContext";
 import Preloader from "./Components/Preloader/Preloader";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   // Retrieve theme from ThemeContext
@@ -35,7 +36,9 @@ function App() {
           <main className="content-wrapper">
             <Outlet />
           </main>
-          <footer></footer>
+          <footer>
+            <Footer />
+          </footer>
         </>
       )}
     </div>
