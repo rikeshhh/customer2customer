@@ -28,6 +28,7 @@ const Header = () => {
     auth
       .signOut()
       .then(() => {
+        navigate('/')
         notifySuccess("Log out");
       })
       .catch((err) => console.log(err.message));
@@ -95,14 +96,13 @@ const Header = () => {
                   className="text-primary-sky-blue border p-2"
                 />
               </Link>
+              <Button
+                content="Cart"
+                handleClick={userCart}
+                className="text-primary-sky-blue border p-2"
+              />
             </>
           )}
-
-          <Button
-            content="Cart"
-            handleClick={userCart}
-            className="text-primary-sky-blue border p-2"
-          />
         </div>
       </nav>
       <NotistackContainer />

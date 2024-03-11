@@ -1,6 +1,6 @@
 // Import useState hook to manage image state
 import React, { useState } from "react";
-import { firestore } from "../../firebase/firebase";
+import { auth, firestore } from "../../firebase/firebase";
 import { useForm } from "react-hook-form";
 import { addDoc, collection } from "firebase/firestore";
 import SellerData from "../../Pages/Buyer/SellerData";
@@ -18,7 +18,7 @@ const Seller = () => {
   const saveInfo = async (data) => {
     try {
       const user = auth.currentUser; // Get the current user
-      console.log(user)
+      console.log(user);
       if (user) {
         // Upload image file to Firestore Storage
         let imageUrl = ""; // Initialize imageUrl variable
