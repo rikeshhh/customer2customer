@@ -18,7 +18,7 @@ const Buyer = ({ userId }) => {
         {/* Button to add a product */}
         <Button
           content="Add a product"
-          className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
+          className="  hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-[#F64C72]"
         />
       </Link>
     </section>

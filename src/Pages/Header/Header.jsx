@@ -8,7 +8,8 @@ import { CiLight } from "react-icons/ci";
 import NotistackContainer from "../../Components/Notistack/NotistackContainer";
 import { notifySuccess } from "../../Components/Notistack/Notices";
 import Button from "../../Components/Button/Button";
-
+import { IoIosArrowDropdownCircle } from "react-icons/io";
+import logo from "../../assets/logo.png";
 const Header = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication status
@@ -38,6 +39,7 @@ const Header = () => {
 
   const userCart = () => {
     navigate("/checkout");
+    setIsOpen(false);
   };
   const { toggleTheme, theme } = useThemeContext();
   const changeTheme = () => {
@@ -46,27 +48,38 @@ const Header = () => {
   const sellerProductDetail = () => {
     navigate("/sellerProduct");
   };
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
+  const { authUser } = useAuthContext();
+  console.log(authUser);
   return (
-    <section className="Header   ">
+    <section className="Header font-semibold">
       <nav className="content-wrapper mx-auto">
-        <div className="Navigation flex justify-between ">
-          <ul className="flex gap-16">
+        <div className="Navigation flex justify-between items-center ">
+          <div className="text-2xl">
             <Link to="/">
-              <li>Home</li>
+              <h1 className="flex p-1 gap-1 text-[#F64C72]">
+                Customer
+                <figure>
+                  <img src={logo} alt="" className="w-12" />
+                </figure>
+                Customer
+              </h1>
             </Link>
-            <Link to="/about">
-              <li>About Us</li>
-            </Link>
-            <Link to="/contact">
-              <li>Contact Us</li>
-            </Link>
-          </ul>
+          </div>
           <Button
             handleClick={changeTheme}
             className=" text-2xl  p-2"
             content={
               theme === "light" ? (
-                <CiLight className="text-black" />
+                <CiLight className="text-white" />
               ) : (
                 <CiDark className="text-white" />
               )
@@ -75,38 +88,92 @@ const Header = () => {
           <div className="flex gap-2">
             {isAuthenticated ? (
               <>
-                <Button
-                  content="SignOut"
-                  handleClick={userLogout}
-                  className="hover:bg-black hover:text-white transition duration-300 ease-in-out border p-4 rounded-lg"
-                />
-                <Button
-                  content="sellerProduct"
-                  handleClick={sellerProductDetail}
-                  className="hover:bg-black hover:text-white transition duration-300 ease-in-out border p-4 rounded-lg"
-                />
+                <div className="relative">
+                  <button
+                    className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
+                    onClick={toggleDropdown}
+                  >
+                    {authUser.email}{" "}
+                    <IoIosArrowDropdownCircle className="bg-[#F64C72]" />
+                  </button>
+                  {isOpen && (
+                    <div className="absolute z-10 right-0 mt-2 w-48 bg-white rounded-lg shadow-md">
+                      <Button
+                        content="SignOut"
+                        handleClick={userLogout}
+                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      />
+                      <Button
+                        content="Seller Product"
+                        handleClick={sellerProductDetail}
+                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      />
+                      <Link
+                        to="/authDetail"
+                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      >
+                        Add Product
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </>
             ) : (
               // Render Sign In button conditionally
-              <>
-                <Link to="/sellerData">
-                  <Button
-                    content="View Products"
-                    className="hover:bg-black hover:text-white transition duration-300 ease-in-out border p-4 rounded-lg"
-                  />
-                </Link>
-                <Link to="/login">
-                  <Button
-                    content="Log in"
-                    className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg"
-                  />
-                </Link>
-                <Button
-                  content="Cart"
-                  handleClick={userCart}
-                  className=" hover:bg-black hover:text-white transition duration-300 ease-in-out border p-4 rounded-lg"
-                />
-              </>
+              <div className="relative">
+                <button
+                  className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
+                  onClick={toggleDropdown}
+                >
+                  Menu <IoIosArrowDropdownCircle className="bg-[#F64C72]" />
+                </button>
+                {isOpen && (
+                  <div className="absolute z-10 right-0 mt-2 w-48 bg-white rounded-lg shadow-md">
+                    <Link
+                      to="/"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={closeDropdown}
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      to="/about"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={closeDropdown}
+                    >
+                      About Us
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={closeDropdown}
+                    >
+                      Contact Us
+                    </Link>
+                    <Link
+                      to="/sellerData"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={closeDropdown}
+                    >
+                      View Products
+                    </Link>
+                    <Link
+                      to="/login"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={closeDropdown}
+                    >
+                      Log in
+                    </Link>
+
+                    <button
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                      onClick={userCart}
+                    >
+                      User Cart
+                    </button>
+                  </div>
+                )}
+              </div>
             )}
           </div>
         </div>

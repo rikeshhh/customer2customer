@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import superHero from "../../assets/superhero.png";
 // Component for displaying a preloader with random quotes
 const Preloader = () => {
   // Array of quotes to display
@@ -22,7 +22,12 @@ const Preloader = () => {
   // JSX to render the preloader with a random quote
   return (
     <div className="flex flex-col gap-12 justify-center items-center h-screen">
-      <div className="flipping"></div>
+      <div className="flipping">
+      <figure className="animate-bounce">
+          <img src={superHero} alt="" className="superhero"/>
+        </figure>
+      </div>
+
       <p className="text-3xl black max-sm:text-xl">{randomQuote}</p>
     </div>
   );

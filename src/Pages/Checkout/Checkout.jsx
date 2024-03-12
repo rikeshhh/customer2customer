@@ -5,6 +5,7 @@ import Button from "../../Components/Button/Button";
 import { notifySuccess } from "../../Components/Notistack/Notices";
 import NotistackContainer from "../../Components/Notistack/NotistackContainer";
 import config from "../../Components/KHalti/KhaltiConfig";
+import { useNavigate } from "react-router-dom";
 
 let checkout = new KhaltiCheckout(config);
 
@@ -36,37 +37,49 @@ const Checkout = () => {
   const paymentCheckout = () => {
     checkout.show({ amount: total * 100 }); // Multiply total by 100 as Khalti accepts amount in paisa
   };
-
+  const navigate = useNavigate();
   return (
     <>
       {states.length > 0 ? (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="flex flex-col gap-4">
           {states.map((option, index) => (
             <div
               key={index}
-              className="flex border flex-col justify-start p-4 rounded-lg gap-2 font-black "
+              className="flex  justify-between items-center p-4 rounded-lg gap-2 font-black "
             >
-              <figure className="object-contain px-2">
-                <img src={option.imageUrl} alt="" />
+              <figure>
+                <img
+                  src={option.imageUrl}
+                  alt=""
+                  className="object-cover px-2 h-32 w-96"
+                />
               </figure>
-              <h2>Price:{option.productAmount}</h2>
-              <Button
-                handleClick={() => removeItem(index)}
-                content="Remove"
-                className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
-              />
+              <div className="flex-col">
+                <h2>Price:{option.productAmount}</h2>
+                <p>{option.productDescrip}</p>
+              </div>
+
+              <div>
+                <Button
+                  handleClick={() => removeItem(index)}
+                  content="Remove"
+                  className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
+                />
+              </div>
             </div>
           ))}
         </div>
       ) : (
         "Cart is empty"
       )}
-      <p>Total: {total}</p>
+     <div className="flex justify-center items-center flex-col p-12 gap-8">
+     <p>Total: {total}</p>
       <Button
         content="Pay with Khalti"
         handleClick={paymentCheckout}
-        className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
+        className=" hover:bg-black hover:text-white  transition duration-300 ease-in-out p-4 border rounded-lg bg-primary-sky-blue"
       />
+     </div>
       <NotistackContainer />
     </>
   );

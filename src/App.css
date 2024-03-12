@@ -1,10 +1,12 @@
 body {
   /* Set background image */
-  background-image: url("./assets/man.jpg");
+  /* background-image: url("./assets/man.jpg"); */
   /* Adjust background properties as needed */
   background-size: cover; /* Cover the entire background */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent the background image from repeating */
+  /* color: white; */
+  background-color: #2f2fa2;
   color: white;
 }
 form input {
@@ -21,7 +23,86 @@ form input {
   margin: 0 auto;
   padding: 15px 15px;
 }
-#light {
+.circle {
+  background: #242582;
+  border-radius: 50%;
+  width: 800px;
+  height: 800px;
+  /* background-image: url("./assets/stagOne.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; */
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.circleTwo {
+  background: #242582;
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+  animation: 15s linear infinite;
+  /* background-image: url("./assets/stagOne.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; */
+}
+.circleThree {
+  background: #242582;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  /* background-image: url("./assets/stagOne.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; */
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.circleFour {
+  background: #242582;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  /* background-image: url("./assets/stagOne.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; */
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+.circleFive {
+  background: #242582;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  /* background-image: url("./assets/stagOne.jpg");
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat;  */
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+@keyframes moveCircles {
+  0% {
+    top: 0%;
+  }
+  20% {
+    transform: top(20%);
+  }
+  100% {
+    transform: top(50%);
+  }
 }
 #dark {
   background-color: black;
@@ -277,4 +358,62 @@ header {
   background-size: cover; /* Cover the entire background */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent the background image from repeating */
+}
+.glass {
+  /* From https://css.glass */
+  background: rgba(47, 47, 162, 0.74);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: 1px solid rgba(47, 47, 162, 0.43);
+}
+.signup {
+  /* From https://css.glass */
+  background-color: white;
+  color: #f64c72;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.bouncyCircle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #553d67;
+  animation: bounceCircle 4s ease-in-out infinite;
+  z-index: -10;
+}
+
+@keyframes bounceCircle {
+  0% {
+    transform: translateY(-100%) translateX(0);
+  }
+  10% {
+    transform: translateY(-100%) translateX(0);
+  }
+
+  50% {
+    transform: translateY(0) translateX(100%);
+  }
+  100% {
+    transform: translateY(100%) translateX(0);
+  }
+}
+
+.superhero {
+  width: 42px;
+  height: 42px;
+  animation: flying 8s infinite ;
+}
+
+@keyframes flying {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
 }

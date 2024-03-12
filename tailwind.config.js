@@ -10,6 +10,11 @@ export default {
         typewriter: "typewriter 2s steps(11) forwards",
         caret:
           "typewriter 2s steps(11) forwards, blink 1s steps(11) infinite 2s",
+        circleOne: "moveCircles infinite 8s ease-in-out",
+        circleTwo: "moveCircles infinite 8s ease-in-out",
+        circleThree: "moveCircles infinite 8s ease-in-out",
+        circleFour: "moveCircles infinite 8s ease-in-out",
+        circleFive: "moveCircles infinite 8s ease-in-out",
       },
 
       keyframes: {
@@ -33,6 +38,20 @@ export default {
           },
           "100%": {
             opacity: "0",
+          },
+        },
+        moveCircles: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(-100%)", // Move the element up by 100% of its height
+          },
+          "50%": {
+            opacity: "1",
+            transform: "translateY(0)", // Bring the element to its original position
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translateY(100%)", // Move the element down by 100% of its height
           },
         },
       },

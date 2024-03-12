@@ -9,7 +9,9 @@ import Button from "../../Components/Button/Button";
 import { notifyError, notifySuccess } from "../../Components/Notistack/Notices";
 import NotistackContainer from "../../Components/Notistack/NotistackContainer";
 import { doc, getDoc } from "firebase/firestore";
-
+import login from "../../assets/login.jpg";
+import logo from "../../assets/logo.png";
+import start from "../../assets/start.jpg";
 const Login = () => {
   const [email, setEmail] = useState(""); // State to store email input
   const [password, setPassword] = useState(""); // State to store password input
@@ -63,50 +65,68 @@ const Login = () => {
   };
   return (
     <section className="flex flex-col justify-center items-center  gap-12 ">
-      <div className="flex flex-col border p-12 rounded-xl text-center font-black">
-        <h3>"Welcome to C2C platform"</h3>
+      <div className="flex  justify-between  border-[#F64C72] bg-white  rounded-xl text-center font-black shadow-2xl gap-8">
         <div>
-          <form
-            onSubmit={signIn}
-            className="flex flex-col w-96 justify-center items-start gap-4"
-          >
-            <label className="text-left" htmlFor="">
-              Email
-            </label>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)} // Update email state as user types
-              className="shadow w-full p-2"
-              placeholder="Enter your email"
-            />
-            <label htmlFor="" className="">
-              Password
-            </label>
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)} // Update password state as user types
-              type="password" // Input type is password
-              className="shadow w-full p-2"
-              placeholder="Enter your password"
-            />
-            <button
-              type="submit"
-              className=" hover:bg-black hover:text-white transition duration-300 ease-in-out p-2 border rounded-lg w-full "
+          <figure>
+            <img src={start} alt="" className="object-cover w-full " />
+          </figure>
+        </div>
+        <div className="w-1/2 loginBox flex flex-col justify-center items-center font-semibold">
+          <div className="text-2xl">
+            <Link to="/">
+              <h2 className="flex p-1 gap-1 text-[#F64C72]">
+                Customer
+                <figure>
+                  <img src={logo} alt="" className="w-12" />
+                </figure>
+                Customer
+              </h2>
+            </Link>
+            <span className="text-[#F64C72]">Welcome back!</span>
+          </div>
+          <div className="flex justify-center items-center p-8 w-full">
+            <form
+              onSubmit={signIn}
+              className="loginForm flex flex-col w-96 justify-center items-start  gap-4 "
             >
-              Login
-            </button>
-            <span className="w-full text-center">
-              Already have an account?{" "}
-              <Link to="/signUp">
-                <Button content="Sign In" className="text-primary-sky-blue " />
-              </Link>
-            </span>
-            <Button
-              handleClick={resetPassword}
-              content="Reset password"
-              className="text-center w-full"
-            />
-          </form>
+              <label className="text-left text-[#F64C72]" htmlFor="">
+                Email
+              </label>
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} // Update email state as user types
+                className="shadow w-full p-2"
+                placeholder="Enter your email"
+              />
+              <label htmlFor="" className="text-[#F64C72]">
+                Password
+              </label>
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} // Update password state as user types
+                type="password" // Input type is password
+                className="shadow w-full p-2"
+                placeholder="Enter your password"
+              />
+              <button
+                type="submit"
+                className=" bg-[#F64C72] text-white transition duration-300 ease-in-out p-2 border rounded-lg w-full "
+              >
+                Login
+              </button>
+              <span className="w-full text-center text-[#F64C72]">
+                Already have an account?{" "}
+                <Link to="/signUp">
+                  <Button content="Sign In" className="text-[#F64C72] " />
+                </Link>
+              </span>
+              <Button
+                handleClick={resetPassword}
+                content="Reset password"
+                className="text-center w-full"
+              />
+            </form>
+          </div>
         </div>
         <NotistackContainer />
       </div>

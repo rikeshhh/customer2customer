@@ -12,6 +12,7 @@ import Checkout from "../Pages/Checkout/Checkout";
 import SellerProduct from "../SellerPages/SellerProduct";
 import About from "../Pages/About/About";
 import Contact from "../Components/Contact/Contact";
+import Work from "../Pages/Work/Work";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path:'/work',
+        element:<Work/>
       },
       {
         path: "/contact",

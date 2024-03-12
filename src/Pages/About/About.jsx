@@ -5,7 +5,7 @@ const About = () => {
     <section className="About flex flex-col gap-12">
       <div className="flex justify-center items-center">
         <div>
-          <h2 className="text-3xl">Our Mission</h2>
+          <h2 className="text-3xl text-[#F64C72]">Our Mission</h2>
           <p className="text-xl">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
             reprehenderit aspernatur doloribus, consequuntur repellat quia
@@ -27,7 +27,9 @@ const About = () => {
             <img src={story} alt="" className="h-96 w-full" />
           </figure>
           <div className="w-1/2 flex flex-col justify-start items-start">
-            <h2 className="text-center font-semibold text-4xl">Our Story</h2>
+            <h2 className="text-center font-semibold text-4xl text-[#F64C72]">
+              Our Story
+            </h2>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
             dicta aperiam reiciendis excepturi, tempora reprehenderit animi
             debitis necessitatibus porro at, magni, delectus fugiat quidem
