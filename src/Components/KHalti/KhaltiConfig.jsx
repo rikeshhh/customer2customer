@@ -6,6 +6,7 @@ let config = {
   productIdentity: "123766",
   productName: "Customer2Customer",
   productUrl: "http://localhost:5173/",
+  redirectUrl: "http://localhost:5173/payment/verification",
   eventHandler: {
     onSuccess(payload) {
       // hit merchant api for initiating verfication
