@@ -12,7 +12,17 @@ import { doc, getDoc } from "firebase/firestore";
 import login from "../../assets/login.jpg";
 import logo from "../../assets/logo.png";
 import start from "../../assets/start.jpg";
+import { useForm } from "react-hook-form";
+import Model from "../../Components/Model/Model";
+import CustomNotistackContainer from "../../Components/Notistack/NotistackContainer";
+
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const [email, setEmail] = useState(""); // State to store email input
   const [password, setPassword] = useState(""); // State to store password input
   const navigate = useNavigate(); // Function to navigate to different routes
@@ -33,9 +43,8 @@ const Login = () => {
   };
 
   // Function to sign in
-  const signIn = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
+  const signIn = (data) => {
+    signInWithEmailAndPassword(auth, data.email, data.password)
       .then(async () => {
         // Fetch user data to check account type after signing in
         const user = auth.currentUser;
@@ -86,28 +95,44 @@ const Login = () => {
           </div>
           <div className="flex justify-center items-center p-8 w-full">
             <form
-              onSubmit={signIn}
+              onSubmit={handleSubmit(signIn)}
               className="loginForm flex flex-col w-96 justify-center items-start  gap-4 "
             >
-              <label className="text-left text-[#F64C72]" htmlFor="">
-                Email
+              <label htmlFor="email" className="text-text-color">
+                Email:
               </label>
               <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)} // Update email state as user types
+                id="email"
+                {...register("email", {
+                  required: Model.Email.required,
+                  maxLength: Model.Email.maxLength,
+                  pattern: Model.Email.pattern,
+                })}
+                placeholder={Model.Email.placeholder}
                 className="shadow w-full p-2"
-                placeholder="Enter your email"
               />
-              <label htmlFor="" className="text-[#F64C72]">
-                Password
+              {errors.email && (
+                <p className="text-red-500">{errors.email.message}</p>
+              )}
+
+              <label htmlFor="password" className="text-text-color">
+                Password:
               </label>
               <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} // Update password state as user types
-                type="password" // Input type is password
+                id="password"
+                {...register("password", {
+                  required: Model.Password.required,
+                  minLength: Model.Password.minLength,
+                  maxLength: Model.Password.maxLength,
+                  pattern: Model.Password.pattern,
+                })}
+                type="password"
                 className="shadow w-full p-2"
-                placeholder="Enter your password"
+                placeholder={Model.Password.placeholder}
               />
+              {errors.password && (
+                <p className="text-red-500">{errors.password.message}</p>
+              )}
               <button
                 type="submit"
                 className=" bg-[#F64C72] text-white transition duration-300 ease-in-out p-2 border rounded-lg w-full "
@@ -128,7 +153,7 @@ const Login = () => {
             </form>
           </div>
         </div>
-        <NotistackContainer />
+        <CustomNotistackContainer />
       </div>
     </section>
   );

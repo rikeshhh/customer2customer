@@ -24,7 +24,7 @@ const Work = () => {
   ];
 
   return (
-    <section className="HowWeWork ">
+    <section className="HowWeWork py-4">
       <div className="content-wrapper font-semibold text-center flex flex-col justify-center items-center">
         <h2 className="text-4xl font-semibold">How it works?</h2>
         <div className="grid grid-cols-3 text-center py-24 gap-8">

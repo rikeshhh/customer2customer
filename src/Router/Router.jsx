@@ -13,6 +13,7 @@ import SellerProduct from "../SellerPages/SellerProduct";
 import About from "../Pages/About/About";
 import Contact from "../Components/Contact/Contact";
 import Work from "../Pages/Work/Work";
+import Services from "../Pages/Service/Services";
 
 export const router = createBrowserRouter([
   {
@@ -28,8 +29,8 @@ export const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path:'/work',
-        element:<Work/>
+        path: "/work",
+        element: <Work />,
       },
       {
         path: "/contact",
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <Checkout />,
+      },
+      {
+        path: "/service",
+        element: <Services />,
       },
     ],
   },

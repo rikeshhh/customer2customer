@@ -9,9 +9,15 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useAuthContext } from "../../Context/AuthContext";
 import { notifyError, notifySuccess } from "../../Components/Notistack/Notices";
 import NotistackContainer from "../../Components/Notistack/NotistackContainer";
+import Model from "../../Components/Model/Model";
 const Seller = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const { authUser, handleSignOut } = useAuthContext();
-  const { register, handleSubmit, reset } = useForm();
   // State to store the selected image file
   const [imageFile, setImageFile] = useState();
 
@@ -117,10 +123,18 @@ const Seller = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  id="productName"
+                  className={`w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md ${
+                    errors.productName ? "border-red-500" : ""
+                  }`}
                   placeholder="Enter the product info"
-                  {...register("productName")}
+                  {...register("productName", Model.ProductName)}
                 />
+                {errors.productName && (
+                  <span className="text-red-500">
+                    {errors.productName.message}
+                  </span>
+                )}
                 <div className="mb-5">
                   <label
                     for="message"
@@ -130,12 +144,18 @@ const Seller = () => {
                   </label>
                   <textarea
                     rows="4"
-                    name="message"
-                    id="message"
+                    id="productDescrip"
                     placeholder="Type your message"
-                    className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    {...register("productDescrip")}
+                    className={`w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md ${
+                      errors.productDescrip ? "border-red-500" : ""
+                    }`}
+                    {...register("productDescrip", Model.ProductDescription)} // Apply validation rules
                   ></textarea>
+                  {errors.productDescrip && (
+                    <span className="text-red-500">
+                      {errors.productDescrip.message}
+                    </span>
+                  )}
                 </div>
 
                 <input
@@ -148,10 +168,18 @@ const Seller = () => {
                 </label>
                 <input
                   type="text"
+                  id="productAmount"
                   placeholder="Enter the amount"
-                  className="mr-1 shadow  w-full p-2 border "
-                  {...register("productAmount")}
+                  className={`mr-1 shadow  w-full p-2 border ${
+                    errors.productAmount ? "border-red-500" : ""
+                  }`}
+                  {...register("productAmount", Model.ProductAmount)}
                 />
+                {errors.productAmount && (
+                  <span className="text-red-500">
+                    {errors.productAmount.message}
+                  </span>
+                )}
                 <button
                   type="submit"
                   className="hover:shadow-form rounded-md bg-[#F64C72] py-3 px-8 text-base font-semibold text-white outline-none"

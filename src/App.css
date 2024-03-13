@@ -9,6 +9,7 @@ body {
   background-color: #2f2fa2;
   color: white;
 }
+
 form input {
   color: black;
 }
@@ -399,14 +400,13 @@ header {
     transform: translateY(0) translateX(100%);
   }
   100% {
-    transform: translateY(100%) translateX(0);
   }
 }
 
 .superhero {
   width: 42px;
   height: 42px;
-  animation: flying 8s infinite ;
+  animation: flying 8s infinite;
 }
 
 @keyframes flying {

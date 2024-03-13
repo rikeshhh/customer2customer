@@ -8,28 +8,36 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import { notifyError, notifySuccess } from "../../Components/Notistack/Notices";
 import signup from "../../assets/signup.png";
+import Model from "../../Components/Model/Model";
+import { useForm } from "react-hook-form";
+import { data } from "autoprefixer";
+import CustomNotistackContainer from "../../Components/Notistack/NotistackContainer";
 const Signup = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   const [accountType, setAccountType] = useState("");
   const navigate = useNavigate();
 
-  const signUp = async (e) => {
-    e.preventDefault();
+  const signUp = async (data) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-        email,
-        password
+        data.email,
+        data.password
       );
 
       const userDocRef = doc(firestore, "users", userCredential.user.uid);
 
       // Include account type when setting user document data
       await setDoc(userDocRef, {
-        email: email,
-        bio: accountType, // Store the account type
+        email: data.email,
+        bio: data.accountType, // Store the account type
       });
 
       notifySuccess("Account created successfully");
@@ -57,39 +65,54 @@ const Signup = () => {
           <h2>Get Started!</h2>
         </div>
         <form
-          onSubmit={signUp}
+          onSubmit={handleSubmit(signUp)}
           className="flex flex-col w-96 justify-center items-start gap-4"
         >
-          <label htmlFor="" className="w-full text-left ">
-            Email
+          <label htmlFor="email" className="text-text-color">
+            Email:
           </label>
           <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mr-1 shadow w-full p-2 border"
-            placeholder="Enter your email"
+            id="email"
+            {...register("email", {
+              required: Model.Email.required,
+              maxLength: Model.Email.maxLength,
+              pattern: Model.Email.pattern,
+            })}
+            placeholder={Model.Email.placeholder}
+            className="shadow w-full p-2"
           />
-          <label htmlFor="" className="w-full text-left ">
-            Password
+          {errors.email && notifyError(errors.email.message)}
+
+          <label htmlFor="password" className="text-text-color">
+            Password:
           </label>
           <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mr-1 shadow w-full p-2 border"
-            placeholder="Enter your password"
+            id="password"
+            {...register("password", {
+              required: Model.Password.required,
+              minLength: Model.Password.minLength,
+              maxLength: Model.Password.maxLength,
+              pattern: Model.Password.pattern,
+            })}
+            type="password"
+            className="shadow w-full p-2"
+            placeholder={Model.Password.placeholder}
           />
+          {errors.password && notifyError(errors.password.message)}
           <label htmlFor="" className="w-full text-left ">
             Account Type
           </label>
           <select
-            value={accountType}
-            onChange={(e) => setAccountType(e.target.value)}
+            id="accountType"
+            name="accountType" // Set the name attribute
+            {...register("accountType")} // Pass the name attribute to the register function
             className="mr-1 shadow w-full p-2 border text-black"
             placeholder="Enter your account type (e.g., buyer or seller)"
           >
             <option value="Buyer">Buyer</option>
-            <option value="seller">Seller</option>
+            <option value="Seller">Seller</option>
           </select>
+          {errors.accountType && notifyError("Please select an account type")}
           <button
             type="submit"
             className=" bg-[#F64C72] text-white transition duration-300 ease-in-out p-2  rounded-lg w-full "
@@ -98,6 +121,8 @@ const Signup = () => {
           </button>
         </form>
       </div>
+      <CustomNotistackContainer />
+
       {error && <p>{error}</p>}
     </section>
   );

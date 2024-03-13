@@ -23,7 +23,7 @@ const Preloader = () => {
   return (
     <div className="flex flex-col gap-12 justify-center items-center h-screen">
       <div className="flipping">
-      <figure className="animate-bounce">
+      <figure className="animate-bounce ">
           <img src={superHero} alt="" className="superhero"/>
         </figure>
       </div>

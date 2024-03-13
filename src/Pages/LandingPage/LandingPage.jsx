@@ -16,6 +16,8 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import Work from "../Work/Work";
+import Services from "../Service/Services";
+import { CustomView } from "../Customer/CustomView";
 
 // LandingPage component
 const LandingPage = () => {
@@ -142,6 +144,12 @@ const LandingPage = () => {
       </section>
       <section className="GetStarted ">
         <Work />
+      </section>
+      <section className="Services">
+        <Services />
+      </section>
+      <section className="WhatCustomerSay">
+        <CustomView />
       </section>
     </>
   );

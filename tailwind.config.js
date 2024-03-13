@@ -72,6 +72,8 @@ export default {
           "dark-blue": "#0074D9",
           "dark-yellow": "#FFD166",
         },
+        "text-color": "#F64C72",
+        "background-color": "#2f2fa2",
       },
     },
     screens: {
