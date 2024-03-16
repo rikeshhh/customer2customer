@@ -18,6 +18,9 @@ import {
 import Work from "../Work/Work";
 import Services from "../Service/Services";
 import { CustomView } from "../Customer/CustomView";
+import { LandingCart } from "../LandingCart/LandingCart";
+import Category from "../Categories/Category";
+import LandingHeader from "../LandingCart/LandingHeader";
 
 // LandingPage component
 const LandingPage = () => {
@@ -68,10 +71,21 @@ const LandingPage = () => {
 
   return (
     <>
-      <section className="LandingPage relative">
-        <div className="flex justify-center items-center relative">
+      <section className="LandingPage relative ">
+        <div className="flex justify-center items-center relative max-sm:hidden">
           <div className="w-full absolute transition -left-80 -top-30 -z-10 animate-circleFive delay-75">
-            <div className="circle "></div>
+            <div className="circle ">
+              {/* <iframe
+                width="560"
+                height="315"
+                className="object-cover rounded-full w-full"
+                src="https://www.youtube.com/embed/uR3aQOgzyDU?si=h6BW-xiWnLELdFIn"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe> */}
+            </div>
           </div>
 
           <div className="w-full transition absolute left-32 top-40 -z-10 flex animate-circleOne justify-center items-center gap-12 delay-10">
@@ -110,21 +124,23 @@ const LandingPage = () => {
           </figure> */}
 
             {/* Main content */}
-            <div className=" flex flex-col justify-center items-center gap-12 ">
-              <h1 className="text-4xl font-semibold">
+            <div className=" flex flex-col justify-center items-center gap-12 max-sm:gap-0 max-sm:text-center ">
+              <h1 className="text-4xl font-semibold max-sm:xl">
                 Focus on{" "}
                 <span className="text-[#F64C72]">
                   {PageContent[currentIndex].header}
                 </span>
                 ,
               </h1>
-              <h2 className="text-8xl font-semibold">We'll do the rest</h2>
+              <h2 className="text-8xl font-semibold max-sm:xl">
+                We'll do the rest
+              </h2>
               <p className="text-lg">{PageContent[currentIndex].paragraph} </p>
 
               {/* Button for sign-in/up */}
               <Button
                 content={PageContent[currentIndex].buttonContent}
-                className="bg-[#F64C72] text-primary-50 p-2 rounded-md w-96 "
+                className="bg-[#F64C72] text-primary-50 p-2 rounded-md w-96 max-sm:w-auto"
                 handleClick={handleSignin}
               />
             </div>
@@ -135,12 +151,18 @@ const LandingPage = () => {
           </button> */}
           </div>
         )}
-        <div className="absolute bottom-80 flex flex-col gap-4 text-3xl text-[#F64C72]">
+        <div className="absolute bottom-80 flex flex-col gap-4 text-3xl text-[#F64C72] max-sm:hidden">
           <FaGithub />
           <FaInstagram />
           <FaLinkedin />
           <FaAmazon />
         </div>
+      </section>
+      <section className="landingCart">
+        <LandingHeader />
+      </section>
+      <section className="Category">
+        <Category />
       </section>
       <section className="GetStarted ">
         <Work />

@@ -1,0 +1,19 @@
+
+.product-card {
+
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+  }
+.headphone {
+  background-image: url("../../assets/headphone.jpg");
+}
+.clothes {
+  background-image: url("../../assets/clothes.jpg");
+}
+.construction__tools {
+  background-image: url("../../assets/construction.jpg");
+}
+.furniture {
+  background-image: url("../../assets/furniture.jpg");
+}

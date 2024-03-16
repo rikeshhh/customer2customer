@@ -1,14 +1,22 @@
 import React from "react";
 import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
-
+import Button from "../Button/Button";
+import { FaAmazon, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import "./footer.css";
 function Footer() {
+  const listItems = [
+    {
+      header: "Product",
+      list: "Lorem Ispsum",
+    },
+  ];
   return (
     <>
-      <footer className=" body-font  ">
-        <div className="content-wrapper px-5 py-8 mx-auto flex items-center sm:flex-row flex-col ">
+      <footer className=" body-font   content-wrapper text-xl">
+        {/* <div className="content-wrapper px-5 py-8 mx-auto flex items-center sm:flex-row flex-col ">
           <div className="text-2xl">
-          <Link to="/">
+            <Link to="/">
               <h1 className="flex p-1 gap-1 text-[#F64C72]">
                 Customer
                 <figure>
@@ -18,64 +26,135 @@ function Footer() {
               </h1>
             </Link>
           </div>
-
-          <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-            <a className="text-[#F64C72]">
-              <svg
-                fill="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-              >
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-              </svg>
-            </a>
-            <a className="text-[#F64C72]">
-              <svg
-                fill="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-              >
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-              </svg>
-            </a>
-            <a className="text-[#F64C72]">
-              <svg
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-              >
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-              </svg>
-            </a>
-            <a className="text-[#F64C72]">
-              <svg
-                fill="currentColor"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="0"
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="none"
-                  d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
-                ></path>
-                <circle cx="4" cy="4" r="2" stroke="none"></circle>
-              </svg>
-            </a>
-          </span>
+        </div> */}
+        {/* <div className="flex w-full justify-between">
+          <div className="w-1/2 flex flex-col">
+            <div className="text-2xl font-bold">
+              <h2>Have a look at our unique selling proportions</h2>
+            </div>
+            <div>
+              <button className="bg-text-color p-2 font-semibold text-xl rounded-lg">
+                Read More
+              </button>
+            </div>
+          </div>
+          <div className="flex flex-col w-1/2">
+            <div className="font-bold">
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Nesciunt veniam, in possimus quos error dicta modi aliquid,
+                minus praesentium sunt alias id doloremque illo iure veritatis
+                totam esse? Debitis, aut!
+              </p>
+            </div>
+            <div className="flex">
+              <div className="flex flex-col">
+                <div className="text-4xl font-bold text-text-color">
+                  <h2>100%</h2>
+                </div>
+                <div>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Rerum perferendis adipisci minus incidunt unde aliquid modi,
+                    tempore veniam quae beatae nihil ipsam quibusdam? Dolorem
+                    labore adipisci, voluptatibus nam earum enim.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="text-4xl font-bold text-text-color">
+                  <h2>100%</h2>
+                </div>
+                <div>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Rerum perferendis adipisci minus incidunt unde aliquid modi,
+                    tempore veniam quae beatae nihil ipsam quibusdam? Dolorem
+                    labore adipisci, voluptatibus nam earum enim.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> */}
+        <div className="flex flex-col justify-center items-center py-12 gap-8">
+          <div className="py-6 text-4xl font-black">
+            <h2>Do you want to join us?</h2>
+          </div>
+          <div className="text-center px-12">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
+              suscipit, minus ratione expedita ab ex maiores in neque assumenda
+              animi quos? Aspernatur laboriosam doloribus eum quidem ipsam cum
+              placeat nemo?
+            </p>
+          </div>
+          <div>
+            <Button
+              content="Join us"
+              className=" bg-[#F64C72] text-white transition duration-300 ease-in-out p-2 border rounded-lg w-full "
+            />
+          </div>
+        </div>
+        <div className="border-t-2 border-b-2 flex justify-between py-12">
+          <div className="text-3xl font-black flex justify-center items-center hover:text-text-color">
+            <h3>Customer2Customer</h3>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="text-3xl text-text-color font-black">
+              <h2>Partnership</h2>
+            </div>
+            <div className="font-thin text-base">
+              <ul>
+                <li>Google</li>
+                <li>Airbnb</li>
+                <li>All express</li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="text-3xl text-text-color font-black">
+              <h2>About</h2>
+            </div>
+            <div className="font-thin text-base">
+              <ul>
+                <li>Google</li>
+                <li>Airbnb</li>
+                <li>All express</li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="text-3xl text-text-color font-black">
+              <h2>Support</h2>
+            </div>
+            <div className="font-thin text-base">
+              <ul>
+                <li>Google</li>
+                <li>Airbnb</li>
+                <li>All express</li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="text-3xl text-text-color font-black">
+              <h2>Follow us</h2>
+            </div>
+            <div className="font-thin text-base">
+              <ul className="flex justify-between text-text-color">
+                <FaInstagram />
+                <li>
+                  <FaGithub />
+                </li>
+                <li>
+                  <FaAmazon />
+                </li>
+                <li>
+                  <FaLinkedin />
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </footer>
     </>

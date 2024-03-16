@@ -109,8 +109,8 @@ const Signup = () => {
             className="mr-1 shadow w-full p-2 border text-black"
             placeholder="Enter your account type (e.g., buyer or seller)"
           >
-            <option value="Buyer">Buyer</option>
-            <option value="Seller">Seller</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
           </select>
           {errors.accountType && notifyError("Please select an account type")}
           <button

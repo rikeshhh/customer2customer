@@ -33,7 +33,7 @@ function App() {
           <header className="content-wrapper">
             <Header />
           </header>
-          <main className="content-wrapper">
+          <main className="content-wrapper max-sm:w-auto max-sm:text-xl">
             <Outlet />
           </main>
           <footer>

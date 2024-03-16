@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebase";
 import { useAuthContext } from "../../Context/AuthContext";
 import { ThemeContext, useThemeContext } from "../../Context/ThemeContext";
@@ -10,6 +10,7 @@ import { notifySuccess } from "../../Components/Notistack/Notices";
 import Button from "../../Components/Button/Button";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import logo from "../../assets/logo.png";
+import "./header.css";
 const Header = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication status
@@ -61,121 +62,115 @@ const Header = () => {
   console.log(authUser);
   return (
     <section className="Header font-semibold">
-      <nav className="content-wrapper mx-auto">
+      <nav className="content-wrapper mx-auto text-xl">
         <div className="Navigation flex justify-between items-center ">
-          <div className="text-2xl">
+          <div className="text-2xl max-sm:text-xs">
             <Link to="/">
               <h1 className="flex p-1 gap-1 text-[#F64C72]">
                 Customer
                 <figure>
-                  <img src={logo} alt="" className="w-12" />
+                  <img src={logo} alt="" className="w-12 max-sm:w-auto " />
                 </figure>
                 Customer
               </h1>
             </Link>
           </div>
-          <Button
-            handleClick={changeTheme}
-            className=" text-2xl  p-2"
-            content={
-              theme === "light" ? (
-                <CiLight className="text-white" />
-              ) : (
-                <CiDark className="text-white" />
-              )
-            }
-          />
+
           <div className="flex gap-2">
             {isAuthenticated ? (
               <>
-                <div className="relative">
-                  <button
-                    className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
-                    onClick={toggleDropdown}
-                  >
-                    {authUser.email}{" "}
-                    <IoIosArrowDropdownCircle className="bg-[#F64C72]" />
-                  </button>
-                  {isOpen && (
-                    <div className="absolute z-10 right-0 mt-2 w-48 bg-white rounded-lg shadow-md">
-                      <Button
-                        content="SignOut"
-                        handleClick={userLogout}
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      />
-                      <Button
-                        content="Seller Product"
-                        handleClick={sellerProductDetail}
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      />
-                      <Link
-                        to="/authDetail"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      >
-                        Add Product
-                      </Link>
-                    </div>
-                  )}
+                <div className="flex justify-center items-center gap-4">
+                  <Button
+                    content="Seller Product"
+                    handleClick={sellerProductDetail}
+                  />
+                  <Link to="/authDetail">Add Product</Link>
+                  <div className="relative">
+                    <button
+                      className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
+                      onClick={toggleDropdown}
+                    >
+                      {authUser.email}
+                      <IoIosArrowDropdownCircle className="bg-[#F64C72]" />
+                    </button>
+                    {isOpen && (
+                      <div className="absolute z-10 right-0 mt-4 w-56 bg-white rounded-lg shadow-md">
+                        <div className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                          <Button content="SignOut" handleClick={userLogout} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </>
             ) : (
               // Render Sign In button conditionally
-              <div className="relative">
-                <button
-                  className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
-                  onClick={toggleDropdown}
+              <div className="flex justify-center items-center gap-4">
+                <NavLink
+                  to="/"
+                  onClick={closeDropdown}
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
                 >
-                  Menu <IoIosArrowDropdownCircle className="bg-[#F64C72]" />
-                </button>
-                {isOpen && (
-                  <div className="absolute z-10 right-0 mt-2 w-48 bg-white rounded-lg shadow-md">
-                    <Link
-                      to="/"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      onClick={closeDropdown}
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      to="/about"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      onClick={closeDropdown}
-                    >
-                      About Us
-                    </Link>
-                    <Link
-                      to="/contact"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      onClick={closeDropdown}
-                    >
-                      Contact Us
-                    </Link>
-                    <Link
-                      to="/sellerData"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      onClick={closeDropdown}
-                    >
-                      View Products
-                    </Link>
-                    <Link
-                      to="/login"
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      onClick={closeDropdown}
-                    >
-                      Log in
-                    </Link>
+                  Home
+                </NavLink>
+                <NavLink to="/about" onClick={closeDropdown}>
+                  About Us
+                </NavLink>
+                <NavLink to="/contact" onClick={closeDropdown}>
+                  Contact Us
+                </NavLink>
 
-                    <button
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      onClick={userCart}
-                    >
-                      User Cart
-                    </button>
-                  </div>
-                )}
+                <NavLink to="/sellerData" onClick={closeDropdown}>
+                  View Products
+                </NavLink>
+                <div className="p-2 font-semibold  rounded-lg relative">
+                  <button
+                    className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
+                    onClick={toggleDropdown}
+                  >
+                    More
+                    <IoIosArrowDropdownCircle className="bg-[#F64C72]" />
+                  </button>
+
+                  {isOpen && (
+                    <div className="absolute z-10 right-0 mt-4 w-56 bg-white rounded-lg shadow-md">
+                      <div>
+                        <NavLink to="/checkout">
+                          <Button
+                            content="User Cart"
+                            handleClick={userCart}
+                            className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                          />
+                        </NavLink>
+                      </div>
+                      <NavLink
+                        to="/login"
+                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                        onClick={closeDropdown}
+                      >
+                        Log in
+                      </NavLink>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>
+          {/* <div>
+            <Button
+              handleClick={changeTheme}
+              className=" text-2xl  p-2"
+              content={
+                theme === "light" ? (
+                  <CiLight className="text-white" />
+                ) : (
+                  <CiDark className="text-white" />
+                )
+              }
+            />
+          </div> */}
         </div>
       </nav>
       <NotistackContainer />

@@ -27,11 +27,11 @@ const Work = () => {
     <section className="HowWeWork py-4">
       <div className="content-wrapper font-semibold text-center flex flex-col justify-center items-center">
         <h2 className="text-4xl font-semibold">How it works?</h2>
-        <div className="grid grid-cols-3 text-center py-24 gap-8">
+        <div className="grid grid-cols-3 text-center py-24 gap-8 max-sm:grid-cols-1">
           {workContent.map((content, index) => (
             <div
               key={index}
-              className="p-4 flex flex-col justify-center items-center gap-6 border-r-2"
+              className="p-4 flex flex-col justify-center items-center gap-6 border-r-2 max-sm:border-b-2"
             >
               <p className="text-4xl text-[#F64C72] font-black">
                 {content.icon}

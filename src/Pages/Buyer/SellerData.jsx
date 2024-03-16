@@ -48,7 +48,7 @@ const SellerData = () => {
   };
 
   return (
-    <section className="SellerData h-screen">
+    <section className="SellerData py-12">
       <>
         <h2 className="text-center text-3xl font-black p-4">Products</h2>
         <div className="grid grid-cols-4 gap-4">

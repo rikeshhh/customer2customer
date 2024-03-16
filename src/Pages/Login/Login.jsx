@@ -54,7 +54,7 @@ const Login = () => {
           if (userDocSnapshot.exists()) {
             const userData = userDocSnapshot.data();
             const userBio = userData.bio;
-            if (userBio === "seller") {
+          if (userBio === "seller") {
               notifySuccess("Login successful");
               setTimeout(() => {
                 navigate("/authDetail");
@@ -62,7 +62,7 @@ const Login = () => {
             } else {
               notifySuccess("Login successful");
               setTimeout(() => {
-                navigate("/land");
+                navigate("/");
               }, 1000);
             }
           }

@@ -74,6 +74,7 @@ export default {
         },
         "text-color": "#F64C72",
         "background-color": "#2f2fa2",
+        "light-green": "#B3FFB3",
       },
     },
     screens: {

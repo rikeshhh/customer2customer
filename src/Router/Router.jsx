@@ -14,6 +14,8 @@ import About from "../Pages/About/About";
 import Contact from "../Components/Contact/Contact";
 import Work from "../Pages/Work/Work";
 import Services from "../Pages/Service/Services";
+import { LandingCart } from "../Pages/LandingCart/LandingCart";
+import Category from "../Pages/Categories/Category";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +35,10 @@ export const router = createBrowserRouter([
         element: <Work />,
       },
       {
+        path: "/category",
+        element: <Category />,
+      },
+      {
         path: "/contact",
         element: <Contact />,
       },
@@ -43,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <Signup />,
+      },
+      {
+        path: "/landingCart",
+        element: <LandingCart />,
       },
       {
         path: "/sellerProduct",

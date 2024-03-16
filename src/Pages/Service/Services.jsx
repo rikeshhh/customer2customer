@@ -59,8 +59,8 @@ const Services = () => {
 
   return (
     <section className="services  w-full  items-center shadow-2xl  p-4 rounded-lg">
-      <div className="h-screen flex flex-col justify-between">
-        <div className="flex justify-between p-4">
+      <div className="h-screen flex flex-col justify-between max-sm:h-auto">
+        <div className="flex justify-between p-4 max-sm:flex-col">
           <div className="text-center text-white font-semibold text-4xl clip">
             <h2>Our Services</h2>
           </div>
@@ -76,7 +76,7 @@ const Services = () => {
           </div>
           <div className="circleBehind absolute -left-9 -top-5 z-50"></div>
           <div
-            className="grid grid-cols-3 p-4 h-96 gap-4 overflow-y-scroll scroll-smooth"
+            className="grid grid-cols-3 p-4 h-96 gap-4 overflow-y-scroll scroll-smooth max-sm:grid-cols-1"
             ref={parentRef}
           >
             {serviceContent.map((content, index) => (
@@ -102,9 +102,7 @@ const Services = () => {
             Ready To Get Started With Customer2Customer?
           </h2>
           <div className="bg-text-color p-2 font-semibold text-xl rounded-lg">
-            <button>
-                Let's Work Together
-            </button>
+            <button>Let's Work Together</button>
           </div>
         </div>
       </div>

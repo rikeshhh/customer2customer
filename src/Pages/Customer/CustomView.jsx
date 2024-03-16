@@ -46,17 +46,17 @@ export const CustomView = () => {
     setIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
   };
   return (
-    <section className="h-screen w-full py-12">
+    <section className="h-screen w-full py-12 max-sm:p-0 max-sm:h-auto">
       <div className="pt-40">
-        <div className="flex justify-between items-center">
-          <div className="font-semibold text-4xl w-1/2">
+        <div className="flex justify-between items-center max-sm:flex-col">
+          <div className="font-semibold text-4xl w-1/2 ">
             <h2>Elevating C2C Experiences!</h2>
           </div>
           <div className="bg-text-color p-2 font-semibold text-xl rounded-lg">
             <button>View All Success Stories</button>
           </div>
         </div>
-        <div className="flex w-full justify-between items-center gap-12 py-12">
+        <div className="flex w-full justify-between items-center gap-12 py-12 max-sm:flex-col">
           <iframe
             className="w-1/2 h-60 rounded-2xl"
             src={customView[0].videoLink}
@@ -83,7 +83,7 @@ export const CustomView = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center items-center gap-6">
+        <div className="flex justify-center items-center gap-6 max-sm:flex-col">
           <ProgressBar rate={customView[index].width} />
           <div className="flex justify-end gap-4">
             <button
