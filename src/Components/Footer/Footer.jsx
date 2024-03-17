@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import { FaAmazon, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import "./footer.css";
@@ -11,6 +11,7 @@ function Footer() {
       list: "Lorem Ispsum",
     },
   ];
+  const navigate = useNavigate();
   return (
     <>
       <footer className=" body-font   content-wrapper text-xl">
@@ -92,6 +93,7 @@ function Footer() {
           <div>
             <Button
               content="Join us"
+              handleClick={() => navigate("/login")}
               className=" bg-[#F64C72] text-white transition duration-300 ease-in-out p-2 border rounded-lg w-full "
             />
           </div>

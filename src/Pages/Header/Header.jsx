@@ -34,6 +34,9 @@ const Header = () => {
         navigate("/");
 
         notifySuccess("Log out");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       })
       .catch((err) => console.log(err.message));
   };
@@ -92,9 +95,10 @@ const Header = () => {
                       className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
                       onClick={toggleDropdown}
                     >
-                      {authUser
-                        ? authUser.email // Render email if authUser exists
-                        : "More" // Render 'More' if authUser doesn't exist
+                      {
+                        authUser
+                          ? authUser.email // Render email if authUser exists
+                          : "More" // Render 'More' if authUser doesn't exist
                       }
 
                       <IoIosArrowDropdownCircle className="bg-[#F64C72]" />
