@@ -21,7 +21,6 @@ const ProdDetail = () => {
   const contactSeller = () => {
     notifySuccess("Not avaialble");
   };
-  console.log(seller);
   return (
     <section className="ProductDetail ">
       <div className="container mx-auto flex flex-col gap-12 py-12 w-full">

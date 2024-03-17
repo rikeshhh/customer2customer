@@ -4,8 +4,37 @@ import { useForm } from "react-hook-form";
 import Button from "../../Components/Button/Button";
 import { CiStar } from "react-icons/ci";
 import { LandingCart } from "../LandingCart/LandingCart";
+import { auth, firestore } from "../../firebase/firebase";
+import { useAuthContext } from "../../Context/AuthContext";
+import { useState } from "react";
+import { notifyError, notifySuccess } from "../../Components/Notistack/Notices";
+import { addDoc, collection } from "firebase/firestore";
 
 const AddCommnet = () => {
+  const { authUser, handleSignOut } = useAuthContext();
+  const [imageFile, setImageFile] = useState();
+  const userBio = authUser ? authUser.bio : ""; // Check if authUser exists before accessing its properties
+
+  console.log(userBio);
+  const saveComment = async (data) => {
+    try {
+      const user = auth.currentUser; // Get the current user
+      console.log(user);
+      if (user) {
+        // Save form data to Firestore
+        await addDoc(collection(firestore, "userComment"), {
+          ...data,
+          userId: user.uid, // Include the userId in the document
+        });
+        reset();
+        notifySuccess("Form data saved successfully!");
+      } else {
+        console.log("No user signed in");
+      }
+    } catch (error) {
+      console.error("Error saving form data:", error);
+    }
+  };
   const {
     register,
     handleSubmit,
@@ -25,11 +54,14 @@ const AddCommnet = () => {
             </figure>
           </div>
 
-          <div className="flex flex-col w-full gap-6 p-4">
+          <form
+            className="flex flex-col w-full gap-6 p-4"
+            onSubmit={handleSubmit(saveComment)}
+          >
             <div className="flex gap-4 ">
               <div className="w-full">
                 <label for="Name" className="mb-3 block text-base font-medium ">
-                  Product Amount:
+                  Your Name:
                 </label>
                 <input
                   id="username"
@@ -102,19 +134,18 @@ const AddCommnet = () => {
               <div>
                 <Button
                   content="Post Review"
+                  type="submit"
                   className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
                 />
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <div className="SimilarProducts py-12">
-        <div className="text-4xl">
-          Similar Products
-        </div>
+        <div className="text-4xl">Similar Products</div>
         <div>
-        <LandingCart/>
+          <LandingCart />
         </div>
       </div>
     </section>

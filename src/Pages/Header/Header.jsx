@@ -11,10 +11,11 @@ import Button from "../../Components/Button/Button";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import logo from "../../assets/logo.png";
 import "./header.css";
+import { useTypeContext } from "../../Context/TypeContext";
 const Header = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication status
-
+  const { typeOfAccount } = useTypeContext();
   useEffect(() => {
     // Check if user is authenticated when component mounts
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -31,6 +32,7 @@ const Header = () => {
       .signOut()
       .then(() => {
         navigate("/");
+
         notifySuccess("Log out");
       })
       .catch((err) => console.log(err.message));
@@ -77,7 +79,7 @@ const Header = () => {
           </div>
 
           <div className="flex gap-2">
-            {isAuthenticated ? (
+            {isAuthenticated && typeOfAccount === "seller" ? (
               <>
                 <div className="flex justify-center items-center gap-4">
                   <Button
@@ -90,7 +92,11 @@ const Header = () => {
                       className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
                       onClick={toggleDropdown}
                     >
-                      {authUser.email}
+                      {authUser
+                        ? authUser.email // Render email if authUser exists
+                        : "More" // Render 'More' if authUser doesn't exist
+                      }
+
                       <IoIosArrowDropdownCircle className="bg-[#F64C72]" />
                     </button>
                     {isOpen && (
@@ -122,38 +128,57 @@ const Header = () => {
                   Contact Us
                 </NavLink>
 
-                <NavLink to="/sellerData" onClick={closeDropdown}>
-                  View Products
-                </NavLink>
+                {typeOfAccount === "buyer" && (
+                  <NavLink to="/sellerData" onClick={closeDropdown}>
+                    View Products
+                  </NavLink>
+                )}
                 <div className="p-2 font-semibold  rounded-lg relative">
                   <button
                     className="bg-[#F64C72] flex justify-center items-center gap-4 text-white px-4 py-2 rounded focus:outline-none"
                     onClick={toggleDropdown}
                   >
-                    More
+                    {
+                      authUser
+                        ? authUser.email // Render email if authUser exists
+                        : "More" // Render 'More' if authUser doesn't exist
+                    }
                     <IoIosArrowDropdownCircle className="bg-[#F64C72]" />
                   </button>
 
-                  {isOpen && (
-                    <div className="absolute z-10 right-0 mt-4 w-56 bg-white rounded-lg shadow-md">
-                      <div>
-                        <NavLink to="/checkout">
-                          <Button
-                            content="User Cart"
-                            handleClick={userCart}
+                  {isOpen ? (
+                    <>
+                      {typeOfAccount === "buyer" ? (
+                        <div className="absolute z-10 right-0 mt-4 w-56 bg-white rounded-lg shadow-md">
+                          <div className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                            <Button
+                              content="SignOut"
+                              handleClick={userLogout}
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="absolute z-10 right-0 mt-4 w-56 bg-white rounded-lg shadow-md">
+                          <div>
+                            <NavLink to="/checkout">
+                              <Button
+                                content="User Cart"
+                                handleClick={userCart}
+                                className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                              />
+                            </NavLink>
+                          </div>
+                          <NavLink
+                            to="/login"
                             className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                          />
-                        </NavLink>
-                      </div>
-                      <NavLink
-                        to="/login"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                        onClick={closeDropdown}
-                      >
-                        Log in
-                      </NavLink>
-                    </div>
-                  )}
+                            onClick={closeDropdown}
+                          >
+                            Log in
+                          </NavLink>
+                        </div>
+                      )}
+                    </>
+                  ) : null}
                 </div>
               </div>
             )}

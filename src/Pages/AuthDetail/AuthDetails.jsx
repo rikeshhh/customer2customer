@@ -7,6 +7,8 @@ import Buyer from "../Buyer/Buyer";
 
 const AuthDetails = () => {
   const { authUser, setAuthUser } = useAuthContext(); // Accessing authUser and setAuthUser from AuthContext
+
+  console.log(authUser);
   const navigate = useNavigate();
 
   // Function to handle authentication state changes

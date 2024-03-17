@@ -15,6 +15,8 @@ import start from "../../assets/start.jpg";
 import { useForm } from "react-hook-form";
 import Model from "../../Components/Model/Model";
 import CustomNotistackContainer from "../../Components/Notistack/NotistackContainer";
+import { useThemeContext } from "../../Context/ThemeContext";
+import { useTypeContext } from "../../Context/TypeContext";
 
 const Login = () => {
   const {
@@ -41,7 +43,7 @@ const Login = () => {
         });
     }
   };
-
+  const { setTypeAccount } = useTypeContext();
   // Function to sign in
   const signIn = (data) => {
     signInWithEmailAndPassword(auth, data.email, data.password)
@@ -54,13 +56,16 @@ const Login = () => {
           if (userDocSnapshot.exists()) {
             const userData = userDocSnapshot.data();
             const userBio = userData.bio;
-          if (userBio === "seller") {
+            if (userBio === "seller") {
+              setTypeAccount("seller"); // Set account type in state
               notifySuccess("Login successful");
               setTimeout(() => {
-                navigate("/authDetail");
+                navigate("/authDetail"); // Pass account type through navigate
               }, 1000);
             } else {
+              setTypeAccount("buyer");
               notifySuccess("Login successful");
+
               setTimeout(() => {
                 navigate("/");
               }, 1000);
