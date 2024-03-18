@@ -122,7 +122,7 @@ header {
 .flipping:after {
   content: "";
   grid-area: 1/1;
-  background: #474bff;
+  background-color: #f64c72;
   clip-path: polygon(
     0 0,
     100% 0,

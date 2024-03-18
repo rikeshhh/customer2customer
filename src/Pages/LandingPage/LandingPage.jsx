@@ -21,6 +21,7 @@ import { CustomView } from "../Customer/CustomView";
 import { LandingCart } from "../LandingCart/LandingCart";
 import Category from "../Categories/Category";
 import LandingHeader from "../LandingCart/LandingHeader";
+import GetStarted from "../GetStarted/GetStarted";
 
 // LandingPage component
 const LandingPage = () => {
@@ -160,6 +161,9 @@ const LandingPage = () => {
       </section>
       <section className="landingCart">
         <LandingHeader />
+      </section>
+      <section className="GetStarted">
+        <GetStarted />
       </section>
       <section className="Category">
         <Category />

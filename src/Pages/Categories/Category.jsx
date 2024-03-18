@@ -51,7 +51,7 @@ const Category = () => {
                 </Link>
                 <Link
                   to="/"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 text-text-style"
                   onClick={closeDropdown}
                 >
                   Clothes
@@ -62,7 +62,9 @@ const Category = () => {
         </div>
         <div className="flex w-full justify-between items-center">
           <div className="w-96 h-96 border product-card furniture flex justify-center items-center text-4xl font-black">
-            <h2>Furniture</h2>
+            <div className="text-white bg-text-color font-semibold text-2xl p-2 rounded-sm">
+              <h2>Furniture</h2>
+            </div>
           </div>
           <div className="w-96 h-96">
             <div
@@ -71,14 +73,18 @@ const Category = () => {
     
           "
             >
-              <h2>Construction Material</h2>
+              <div className="text-white bg-text-color font-semibold text-2xl p-2 rounded-sm">
+                <h2>Construction Material</h2>
+              </div>
             </div>
             <div
               className="h-48 w-full border headphone 
           flex justify-center items-center text-4xl font-black
           product-card"
             >
-              <h2>Sound System</h2>
+              <div className="text-white bg-text-color font-semibold text-2xl p-2 rounded-sm">
+                <h2>Sound System</h2>
+              </div>
             </div>
           </div>
           <div
@@ -86,7 +92,9 @@ const Category = () => {
         flex justify-center items-center text-4xl font-black
         clothes "
           >
-            Clothes
+            <div className="text-white bg-text-color font-semibold text-2xl p-2 rounded-sm">
+              <h2>Clothes</h2>
+            </div>
           </div>
         </div>
       </div>

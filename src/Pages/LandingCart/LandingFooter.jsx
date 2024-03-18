@@ -4,8 +4,8 @@ import Button from "../../Components/Button/Button";
 
 const LandingFooter = () => {
   return (
-    <section className="landingFooter">
-      <div className="flex justify-end pb-12">
+    <section className="landingFooter py-8">
+      <div className="flex justify-end">
         <Link to="/sellerData">
           <Button
             className="bg-text-color p-2 font-semibold text-xl rounded-lg"
